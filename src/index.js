@@ -1,38 +1,9 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import App from './Component/App';
+import Body from './Component/Body';
 
 
-const MyIndex = () => (
-  <div>Hello React!</div>
+ReactDOM.render(
+  <Body />,
+  document.getElementById("container")
 );
-// var Index = React.createClass({
-//   render: function () {
-//     return (
-//       <div>Hello React@</div>
-//     );
-//   }
-// });
-
-// ReactDOM.render(
-//   <App />,
-//   document.getElementById("container")
-// );
-if (window.location.pathname === '/') {
-  ReactDOM.render(
-      <App />,
-      document.getElementById('container')
-  );
-} else if (window.location.pathname === '/staff') {
-  ReactDOM.render(
-      <AddNewStaff />,
-      document.getElementById('staff_container')
-  );
-}
-
-// document.addEventListener('DOMContentLoaded', () => {
-//   ReactDOM.render(
-//     <MyIndex />,
-//     document.getElementById('container')
-//   )
-// })
