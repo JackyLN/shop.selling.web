@@ -1,11 +1,13 @@
 .container {
   position: relative;
+  margin-top: 20px;
 }
 
 .page {
   position: absolute;
   left: 15px;
   right: 15px;
+  top: 60px;
 }
 
 .page-enter {
@@ -28,4 +30,12 @@
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 300ms, transform 300ms;
+}
+
+.card-image {
+  text-align: left;
+}
+
+.card-text {
+  text-align: right;
 }
