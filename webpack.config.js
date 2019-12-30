@@ -1,6 +1,11 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
+// plugins: [
+//   new MiniCssExtractPlugin({
+//     path: path.resolve(__dirname, 'dist'),
+//     filename: 'mystyles.css'
+//   }),
+// ]
 
 module.exports = {
   entry: './src/index.js',
@@ -38,21 +43,21 @@ module.exports = {
         }
       },
       {
-        test: /\.(sass|scss|css)$/,
+        test: /\.s[ac]ss$/i,
         use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader'
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-              // options...
-            }
-          }
-        ]
+          // Creates `style` nodes from JS strings
+          'style-loader',
+          // Translates CSS into CommonJS
+          'css-loader',
+          // Compiles Sass to CSS
+          'sass-loader',
+        ],
       },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      { test: /\.(woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' },
       {
         test: /\.(png|jpe?g|gif)$/,
         use: [{
@@ -61,10 +66,5 @@ module.exports = {
         }, ],
       }
     ]
-  },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'css/mystyles.css'
-    }),
-  ]
+  }
 };

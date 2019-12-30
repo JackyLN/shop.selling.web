@@ -33,9 +33,19 @@
 }
 
 .card-image {
-  text-align: left;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.card-image icon {
+  vertical-align: middle;
 }
 
 .card-text {
   text-align: right;
+}
+
+.sesc {
+  background-color: orange;
+  color: white;
 }
