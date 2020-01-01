@@ -29,6 +29,9 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
+
+app.use(express.urlencoded({ extended: false })).use(express.json());
+
 //Product router
 const productRouter = require('./src/services/productServices');
 app.use('/products', productRouter)
