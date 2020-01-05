@@ -1,22 +1,19 @@
 var mongoose = require('mongoose');
-
 var Schema = mongoose.Schema;
 
-var ProductSchema = new Schema({
+var OrderSchema = new Schema({
   //productId: Schema.Types.ObjectId,
-  name: {
-    type: String,
+  products: [
+    {type : mongoose.Schema.ObjectId, ref : 'Product'}
+  ],
+  customer: {
+    type: Schema.Types.ObjectId,
+    ref: 'Customer',
     required: true
   },
-  description: String,
-  stock: {
+  quantity: {
     type: Number,
     min: 0,
-    required: true
-  },
-  imageurl: String,
-  price: {
-    type: Schema.Types.Decimal128,
     required: true
   },
   created: {
@@ -29,4 +26,4 @@ var ProductSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('Product', ProductSchema);
+module.exports = mongoose.model('Order', OrderSchema);

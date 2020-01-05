@@ -2,21 +2,19 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var ProductSchema = new Schema({
+var CustomerSchema = new Schema({
   //productId: Schema.Types.ObjectId,
-  name: {
+  username: {
     type: String,
     required: true
   },
-  description: String,
-  stock: {
-    type: Number,
-    min: 0,
+  password: {
+    //temporary store as plain text for demo purpose
+    type: String,
     required: true
   },
-  imageurl: String,
-  price: {
-    type: Schema.Types.Decimal128,
+  name:{
+    type: String,
     required: true
   },
   created: {
@@ -29,4 +27,5 @@ var ProductSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('Product', ProductSchema);
+module.exports = mongoose.model('Customer', CustomerSchema);
+

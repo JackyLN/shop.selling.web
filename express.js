@@ -29,16 +29,17 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-
 app.use(express.urlencoded({ extended: false })).use(express.json());
 
 //Product router
 const productRouter = require('./src/services/productServices');
-app.use('/products', productRouter)
-
-app.get('/staff', function (req, res) {
-  res.sendFile(path.join(__dirname + '/staff.html'));
-});
+app.use('/product', productRouter);
+//Customer router
+const customerRouter = require('./src/services/customerServices');
+app.use('/customer', customerRouter);
+//Order router
+const orderRouter = require('./src/services/orderServices');
+app.use('/order', orderRouter);
 
 //App Start
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
