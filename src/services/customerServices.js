@@ -23,11 +23,12 @@ router.get('/:id', getCustomer, (req, res) => {
 // Creating one customer
 router.post('/', async (req, res) => {
   const customer = new Customer({
-    // name: req.body.name,
-    // description: req.body.description,
-    // stock: req.body.stock,
-    // imageurl: req.body.imageurl,
-    // price: req.body.price
+    username: req.body.username,
+    password: req.body.password,
+    phone: req.body.phone,
+    address: req.body.address,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname
   })
 
   try {

@@ -13,7 +13,17 @@ var CustomerSchema = new Schema({
     type: String,
     required: true
   },
-  name:{
+  phone: {
+    type: Number
+  },
+  address: {
+    type: String
+  },
+  firstname: {
+    type: String,
+    required: true
+  },
+  lastname: {
     type: String,
     required: true
   },
@@ -28,4 +38,3 @@ var CustomerSchema = new Schema({
 });
 
 module.exports = mongoose.model('Customer', CustomerSchema);
-
