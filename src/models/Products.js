@@ -19,6 +19,14 @@ var ProductSchema = new Schema({
     type: Schema.Types.Decimal128,
     required: true
   },
+  selling: Boolean,
+  discount: {
+    type: Number,
+    min: 0,
+    max: 100,
+    default: 0,
+    required: true
+  },
   created: {
     type: Date,
     default: Date.now()
