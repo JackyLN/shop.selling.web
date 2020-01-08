@@ -2,7 +2,7 @@ export default {
   items: [
     {
       name: 'Dashboard',
-      url: '/dashboard',
+      url: '/maindashboard',
       icon: 'icon-speedometer',
       badge: {
         variant: 'info',
@@ -35,6 +35,15 @@ export default {
       name: 'Product List',
       url: '/shop/products',
       icon: 'cil-3d',
+    },
+    {
+      title: true,
+      name: 'Order'
+    },
+    {
+      name: 'Order List',
+      url: '/shop/orders',
+      icon: 'cil-cart'
     },
     {
       divider: true,

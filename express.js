@@ -40,6 +40,9 @@ app.use('/customer', customerRouter);
 //Order router
 const orderRouter = require('./src/services/orderServices');
 app.use('/order', orderRouter);
+//Dashboard router
+const dashboardRouter = require('./src/services/dashboardServices');
+app.use('/dashboard', dashboardRouter);
 
 //App Start
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

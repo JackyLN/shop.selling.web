@@ -40,6 +40,8 @@ const Customers = React.lazy(() => import('./views/Shop/Customers'));
 const Customer = React.lazy(() => import('./views/Shop/Customer'));
 const Products = React.lazy(() => import('./views/Shop/Products'));
 const Product = React.lazy(() => import('./views/Shop/Product'));
+const Orders = React.lazy(() => import('./views/Shop/Orders'));
+const MainDashboard = React.lazy(() => import('./views/Shop/MainDashboard'))
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
@@ -85,11 +87,17 @@ const routes = [
   { path: '/users', exact: true,  name: 'Users', component: Users },
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
 
+  // Shop routing
   { path: '/shop/customers', exact: true, name: 'Customers', component: Customers },
   { path: '/shop/customers/:id', exact: true, name: 'Customer Details', component: Customer },
 
   { path: '/shop/products', exact: true, name: 'Products', component: Products },
-  { path: '/shop/products/:id', exact: true, name: 'Product Details', component: Product }
+  { path: '/shop/products/:id', exact: true, name: 'Product Details', component: Product },
+
+  { path: '/shop/orders', extract: true, name: 'Orders', component: Orders },
+  
+  { path: '/shop/maindashboard', name: 'Main Dashboard', component: MainDashboard }
+  
 ];
 
 export default routes;
