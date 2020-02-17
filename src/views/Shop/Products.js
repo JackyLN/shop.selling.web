@@ -7,6 +7,9 @@ import { Col, Row, Fade, Collapse, Badge, Button,
  } from 'reactstrap';
 import { AppSwitch } from '@coreui/react'
 
+import * as api from '../Axios/ProductAxios';
+import swal from "sweetalert2";
+
 
 function ProductRow(props) {
   const product = props.product;
@@ -57,6 +60,7 @@ class Products extends Component {
     };
 
     this.toggle = this.toggle.bind(this);
+    this.processProducts = this.processProducts.bind(this);
   }
 
   toggle() {
@@ -68,18 +72,19 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/product')
-      .then(response => response.json())
-      .then(data => {
-        if(data.length != 0){
-          this.setState({
-            productList: data
-          });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });;
+    api.get_products(this.processProducts, this.showAlertDetail);
+  }
+
+  processProducts(response) {
+    if(response.length != 0){
+      this.setState({
+        productList: response
+      });
+    }
+  }
+
+  showAlertDetail() {
+    swal.fire('Something went wrong!', 'Error loading Peoducts', 'error');
   }
 
   toggle() {

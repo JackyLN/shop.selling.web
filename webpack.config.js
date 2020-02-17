@@ -1,5 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+const appConfig = require('./config.json');
 // plugins: [
 //   new MiniCssExtractPlugin({
 //     path: path.resolve(__dirname, 'dist'),
@@ -15,6 +17,9 @@ module.exports = {
   },
   mode: 'development',
   //mode: 'production'
+  externals: {
+    'Config': JSON.stringify(appConfig),
+  },
   watch: true,
   watchOptions: {
     aggregateTimeout: 300,
@@ -57,7 +62,10 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
       },
-      { test: /\.(woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' },
+      {
+        test: /\.(woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader?limit=100000'
+      },
       {
         test: /\.(png|jpe?g|gif)$/,
         use: [{

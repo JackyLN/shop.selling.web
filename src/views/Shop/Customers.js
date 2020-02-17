@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Badge, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
+import * as api from '../Axios/CustomerAxios';
+import swal from "sweetalert2";
 
 
 function CustomerRow(props) {
@@ -43,21 +45,24 @@ class Customers extends Component {
     this.state = {
       customerList: []
     }
+
+    this.processCustomers = this.processCustomers.bind(this);
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/customer')
-      .then(response => response.json())
-      .then(data => {
-        if(data.length != 0){
-          this.setState({
-            customerList: data
-          });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });;
+    api.get_customers(this.processCustomers, this.showAlertDetail);
+  }
+
+  processCustomers(response) {
+    if(response.length != 0){
+      this.setState({
+        customerList: response
+      });
+    }
+  }
+
+  showAlertDetail() {
+    swal.fire('Something went wrong!', 'Error loading Customers', 'error');
   }
 
   render() {

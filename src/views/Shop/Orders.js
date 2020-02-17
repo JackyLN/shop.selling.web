@@ -10,6 +10,9 @@ import { Col, Row, Fade, Collapse, Badge, Button,
 import { AppSwitch } from '@coreui/react'
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 
+import * as api from '../Axios/OrderAxios';
+import swal from "sweetalert2";
+
 const makeSparkLineData = (dataSetNo, variant) => {
   const dataset = sparkLineChartData[dataSetNo];
   const data = {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
+import * as api from '../Axios/CustomerAxios';
+import swal from "sweetalert2";
 
 class Customer extends Component {
   constructor(props) {
@@ -8,22 +10,24 @@ class Customer extends Component {
     this.state = {
       customer: ''
     }
+
+    this.processCustomer = this.processCustomer.bind(this);
   }
 
   componentDidMount() {
-    let url = `http://localhost:3000/customer/${this.props.match.params.id}`;
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        if(data.length != 0){
-          this.setState({
-            customer: data
-          });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });;
+    api.get_customer(this.props.match.params.id, this.processCustomer, this.showAlertDetail);
+  }
+
+  processCustomer(response) {
+    if(response.length != 0){
+      this.setState({
+        customer: response
+      });
+    }
+  }
+
+  showAlertDetail() {
+    swal.fire('Something went wrong!', 'Error loading Customer', 'error');
   }
 
   render() {

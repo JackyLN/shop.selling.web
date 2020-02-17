@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Badge, Card, CardBody, CardHeader, CardFooter, Button, Col, Row, Table, CardImg, FormGroup, Label, Input, Form, FormText } from 'reactstrap';
 import { AppSwitch } from '@coreui/react'
 
+import * as api from '../Axios/ProductAxios';
+import swal from "sweetalert2";
 
 function CalculatePriceAfter(price, discount) {
   if(parseFloat(discount) == 0) {
@@ -30,30 +32,32 @@ class Product extends Component {
       productimageurl: '',
       productpriceafter: '',
     }
+
+    this.processProduct = this.processProduct.bind(this);
   }
 
   componentDidMount() {
-    let url = `http://localhost:3000/product/${this.props.match.params.id}`;
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        if(data.length != 0){
-          this.setState({
-            product: data,
-            productname: data.name,
-            productselling: data.selling,
-            productstock: data.stock,
-            productprice: data.price.$numberDecimal,
-            productdiscount: data.discount,
-            productdescription: data.description,
-            productimageurl: data.imageurl,
-            productpriceafter: CalculatePriceAfter(data.price.$numberDecimal, data.discount)
-          });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });;
+    api.get_product(this.props.match.params.id, this.processProduct, this.showAlertDetail);
+  }
+
+  processProduct(response) {
+    if(response.length != 0){
+      this.setState({
+        product: response,
+            productname: response.name,
+            productselling: response.selling,
+            productstock: response.stock,
+            productprice: response.price.$numberDecimal,
+            productdiscount: response.discount,
+            productdescription: response.description,
+            productimageurl: response.imageurl,
+            productpriceafter: CalculatePriceAfter(response.price.$numberDecimal, response.discount)
+      });
+    }
+  }
+
+  showAlertDetail() {
+    swal.fire('Something went wrong!', 'Error loading Product', 'error');
   }
   
   handleInputChange = (event) => {
